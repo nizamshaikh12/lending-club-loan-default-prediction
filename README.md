@@ -42,7 +42,7 @@ A class‑weighted logistic regression model serves as a transparent glass‑box
   - Borrower‑level: `annual_inc`, `dti`, `home_ownership`, `purpose`
   - Credit history: `fico_range_low`, `fico_range_high`, `open_acc`, `revol_bal`, `revol_util`, `total_acc`
 - Class imbalance:
-  - Around **40,563** non‑default vs **9,437** default cases in the working sample [file:46]
+  - Around **40,563** non‑default vs **9,437** default cases in the working sample
 
 ---
 
@@ -50,47 +50,47 @@ A class‑weighted logistic regression model serves as a transparent glass‑box
 
 ### Data preprocessing
 
-- Sampling strategy: ~80% of overall data used with a fixed random state for reproducibility [file:47]
+- Sampling strategy: ~80% of overall data used with a fixed random state for reproducibility
 - Target engineered to 0/1 (good vs bad loans)
-- Preprocessing pipeline implemented as a **scikit‑learn `ColumnTransformer`**, applied consistently to train and test splits [file:47]:
+- Preprocessing pipeline implemented as a **scikit‑learn `ColumnTransformer`**, applied consistently to train and test splits:
   - Numerical features: median imputation + `StandardScaler`
   - Categorical features: one‑hot encoding
 
 ### Baseline: Logistic Regression
 
 - Class‑weighted logistic regression as the **glass‑box** baseline
-- Balanced class weights to reflect higher cost of misclassifying a default loan than a good loan [file:47]
-- Up to 1000 iterations to allow the solver to converge on stable coefficients [file:47]
+- Balanced class weights to reflect higher cost of misclassifying a default loan than a good loan
+- Up to 1000 iterations to allow the solver to converge on stable coefficients
 
 ### Tree‑based ensembles: Random Forest and XGBoost
 
-- **Random Forest** with ~200 trees and balanced subsampling to retain sensitivity to the default class [file:47]
-- **XGBoost (Extreme Gradient Boosting)** to test whether boosting provides better ranking of default risk than bagging in structured credit data [file:47]
+- **Random Forest** with ~200 trees and balanced subsampling to retain sensitivity to the default class
+- **XGBoost (Extreme Gradient Boosting)** to test whether boosting provides better ranking of default risk than bagging in structured credit data
 
 ### Advanced models: LightGBM and Neural Network
 
-- **LightGBM** as a faster, efficient boosting alternative for large, sparse design matrices [file:47]
-- **Neural Network (MLP)** with ReLU activations as a deep learning benchmark, operating at the black‑box end of the spectrum [file:47]
+- **LightGBM** as a faster, efficient boosting alternative for large, sparse design matrices
+- **Neural Network (MLP)** with ReLU activations as a deep learning benchmark, operating at the black‑box end of the spectrum
 
 ---
 
 ## Evaluation
 
 - Metrics:
-  - **ROC‑AUC** as the main ranking metric under class imbalance [file:47]
-  - Classification reports for **precision**, **recall** and **F1** on the default class [file:46]
-  - Confusion matrices to understand the financial trade‑offs of false positives vs false negatives [file:47]
+  - **ROC‑AUC** as the main ranking metric under class imbalance
+  - Classification reports for **precision**, **recall** and **F1** on the default class
+  - Confusion matrices to understand the financial trade‑offs of false positives vs false negatives
 - Comparative findings (high level):
-  - XGBoost and LightGBM achieve the **highest ROC‑AUC**, followed by Random Forest [file:46][file:47]
+  - XGBoost and LightGBM achieve the **highest ROC‑AUC**, followed by Random Forest
   - Logistic regression baseline has lower ROC‑AUC but remains robust and highly interpretable
-  - Neural network is competitive but does not clearly outperform gradient boosting on this structured dataset [file:47]
+  - Neural network is competitive but does not clearly outperform gradient boosting on this structured dataset
 
 ---
 
 ## Files in this repository
 
 - `ML-Lending-Club.ipynb` — end‑to‑end modelling notebook (data exploration, preprocessing, model training and evaluation)
-- `ML-Lending-Club.pdf` — project report: *“Explainable Credit Risk Modelling for P2P Lending: Interpreting Loan Default under EU AI Act”* [file:47]
+- `ML-Lending-Club.pdf` — project report: *“Explainable Credit Risk Modelling for P2P Lending: Interpreting Loan Default under EU AI Act”*
 
 ---
 
@@ -130,4 +130,4 @@ A class‑weighted logistic regression model serves as a transparent glass‑box
 
 ## Acknowledgements
 
-This was a **group project**. The work includes joint modelling and reporting; this repository hosts the shared notebook and final report for portfolio and learning purposes [file:47].
+This was a **group project**. The work includes joint modelling and reporting; this repository hosts the shared notebook and final report for portfolio and learning purposes.
